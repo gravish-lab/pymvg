@@ -103,7 +103,7 @@ class CameraModel(object):
         self.rect = rect
 
         self._opencv_compatible = (self.P[0,1]==0)
-        assert np.allclose( P[:,3], np.zeros((3,)))
+        # assert np.allclose( P[:,3], np.zeros((3,)))
         self._cache = {}
         self._cache['Q'] = self.get_Q()
         self._cache['translation'] = self.get_translation()
@@ -178,8 +178,8 @@ class CameraModel(object):
 
             P = np.array(msg.P,dtype=np.float)
             P.shape = (3,4)
-            if not np.allclose(P[:,3], np.zeros((3,))):
-                raise NotImplementedError('not tested when 4th column of P is nonzero')
+            # if not np.allclose(P[:,3], np.zeros((3,))):
+            #     raise NotImplementedError('not tested when 4th column of P is nonzero')
 
             K = np.array( msg.K, dtype=np.float)
             K.shape = (3,3)
