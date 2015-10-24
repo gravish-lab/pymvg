@@ -223,6 +223,14 @@ class MultiCameraSystem:
         A=np.array(A)
         u,d,vt=np.linalg.svd(A)
         X = vt[-1,0:3]/vt[-1,3] # normalize
+        #
+        # err = 0
+        # for name,xy in pts:
+        #     this_pt2d = self.find2d(name,X)
+        #     err += np.sqrt(np.sum(this_pt2d - xy)**2)/2
+        #
+        # err = err / len(pts)
+
         return X
 
     def find2d(self,camera_name,xyz,distorted=True):

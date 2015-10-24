@@ -178,8 +178,8 @@ class CameraModel(object):
 
             P = np.array(msg.P,dtype=np.float)
             P.shape = (3,4)
-            # if not np.allclose(P[:,3], np.zeros((3,))):
-            #     raise NotImplementedError('not tested when 4th column of P is nonzero')
+            if not np.allclose(P[:,3], np.zeros((3,))):
+                raise NotImplementedError('not tested when 4th column of P is nonzero')
 
             K = np.array( msg.K, dtype=np.float)
             K.shape = (3,3)
@@ -508,6 +508,7 @@ class CameraModel(object):
     def get_M(self):
         Qt = self._cache['Qt']
         P33 = self.P[:,:3]
+        # P33 = self.K
         M = np.dot( P33, Qt )
         return M
     def _get_M(self):
